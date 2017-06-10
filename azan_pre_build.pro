@@ -26,8 +26,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         core_widget.cpp \
-    setting_kota.cpp
+    setting_kota.cpp \
+    about_us.cpp \
+    jadwal_azan.cpp
 
 HEADERS += \
         core_widget.h \
-    setting_kota.h
+    setting_kota.h \
+    about_us.h \
+    jadwal_azan.h

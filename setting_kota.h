@@ -2,6 +2,9 @@
 #define SETTING_KOTA_H
 
 #include <QWidget>
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <QLabel>
 
 class setting_kota : public QWidget
 {
@@ -9,9 +12,8 @@ class setting_kota : public QWidget
 public:
     explicit setting_kota(QWidget *parent = nullptr);
 
-signals:
-
-public slots:
+private:
+QLabel *testing;
 };
 
 #endif // SETTING_KOTA_H
