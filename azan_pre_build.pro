@@ -28,10 +28,28 @@ SOURCES += \
         core_widget.cpp \
     setting_kota.cpp \
     about_us.cpp \
-    jadwal_azan.cpp
+    jadwal_azan.cpp \
+    about/about_us.cpp \
+    setting_azan/setting_kota.cpp \
+    core_widget.cpp \
+    jadwal_azan.cpp \
+    main.cpp
 
 HEADERS += \
         core_widget.h \
     setting_kota.h \
     about_us.h \
+    jadwal_azan.h \
+    about/about_us.h \
+    calculation_azan/azan_calculation.h \
+    setting_azan/setting_kota.h \
+    core_widget.h \
     jadwal_azan.h
+
+SUBDIRS += \
+    azan_pre_build.pro
+
+DISTFILES += \
+    database_city.sqlite \
+    LICENSE.md \
+    Credited To
