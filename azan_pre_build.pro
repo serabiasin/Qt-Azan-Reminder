@@ -25,26 +25,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        core_widget.cpp \
-    setting_kota.cpp \
-    about_us.cpp \
-    jadwal_azan.cpp \
     about/about_us.cpp \
+    interface_jadwal/jadwal_azan.cpp \
     setting_azan/setting_kota.cpp \
     core_widget.cpp \
-    jadwal_azan.cpp \
-    main.cpp
 
 HEADERS += \
-        core_widget.h \
-    setting_kota.h \
-    about_us.h \
-    jadwal_azan.h \
     about/about_us.h \
     calculation_azan/azan_calculation.h \
     setting_azan/setting_kota.h \
-    core_widget.h \
-    jadwal_azan.h
+    interface_jadwal/jadwal_azan.h \
+    core_widget.h
 
 SUBDIRS += \
     azan_pre_build.pro
@@ -52,4 +43,7 @@ SUBDIRS += \
 DISTFILES += \
     database_city.sqlite \
     LICENSE.md \
-    Credited To
+    Credited To \
+    icon/controls.svg \
+    icon/mosque-moon-and-star.svg \
+    icon/schedule-button.svg
