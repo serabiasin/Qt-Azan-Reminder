@@ -1,1 +1,7 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/icon_dir">
+        <file>mosque-moon-and-star.svg</file>
+        <file>controls.svg</file>
+        <file>schedule-button.svg</file>
+    </qresource>
+</RCC>
