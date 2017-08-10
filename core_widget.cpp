@@ -1,5 +1,6 @@
 #include "core_widget.h"
 #include <QDebug>
+
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
 {
@@ -17,10 +18,11 @@ Widget::Widget(QWidget *parent)
     sett_ui=new setting_kota(NULL);
     jadwal=new jadwal_azan(NULL);
     about_kita=new about_us(NULL);
-    tombol[0]=new QPushButton("Setting"); //akan diganti icon
+    tombol[0]=new QPushButton; //Setting
+    tombol[0]->setIcon(QIcon(":/icon_dir/controls.svg")); //mencari solusi agar direktori nya lebih local
     tombol[1]=new QPushButton("About"); //akan diganti icon
-    tombol[2]=new QPushButton("Jadwal Azan"); //akan diganti icon
-
+    tombol[2]=new QPushButton; //akan diganti icon
+    tombol[2]->setIcon(QIcon(":/icon_dir/schedule-button.svg"));
     for(int x=0;x<3;x++){
         tombol[x]->setFixedSize(50,50);
         tombol[x]->setFlat(true);
