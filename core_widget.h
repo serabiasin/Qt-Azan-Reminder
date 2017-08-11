@@ -12,9 +12,9 @@
 #include <QGridLayout>
 #include <QFrame>
 
-#include "setting_kota.h"
-#include "about_us.h"
-#include "jadwal_azan.h"
+#include "setting_azan/setting_kota.h"
+#include "about/about_us.h"
+#include "interface_jadwal/jadwal_azan.h"
 
 class Widget : public QWidget
 {
@@ -25,14 +25,17 @@ public:
     ~Widget();
 private:
     QStackedLayout *core_view;
+
     setting_kota *sett_ui;
     jadwal_azan *jadwal;
+    about_us *about_kita;
+
     QHBoxLayout *layout_stacked;
     QVBoxLayout *layout_tombol;
     QBoxLayout *tombol_group;
     QGridLayout *buat_rapi;
     QPushButton *tombol[3];
-    about_us *about_kita;
+
     QFrame *sett_frame1; //reserved untuk stacked view
     QFrame *sett_frame2; //reserved untuk tombol widget
 private slots:

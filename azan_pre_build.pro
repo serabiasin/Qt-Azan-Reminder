@@ -44,6 +44,7 @@ DISTFILES += \
     database_city.sqlite \
     LICENSE.md \
     Credited To \
-    icon/controls.svg \
-    icon/mosque-moon-and-star.svg \
-    icon/schedule-button.svg
+    azan_pre_build.pro.user \
+
+RESOURCES += \
+    icon/icon_pack.qrc
