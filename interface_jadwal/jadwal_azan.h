@@ -2,6 +2,8 @@
 #define JADWAL_AZAN_H
 
 #include <QWidget>
+#include <QLabel>
+#include <QVBoxLayout>
 
 class jadwal_azan : public QWidget
 {
@@ -12,6 +14,9 @@ public:
 signals:
 
 public slots:
+
+private:
+    QVBoxLayout *layout;
 };
 
 #endif // JADWAL_AZAN_H
