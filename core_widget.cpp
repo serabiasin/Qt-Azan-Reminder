@@ -19,9 +19,12 @@ Widget::Widget(QWidget *parent)
     jadwal=new jadwal_azan(NULL);
     about_kita=new about_us(NULL);
     tombol[0]=new QPushButton; //Setting
-    tombol[0]->setIcon(QIcon(":/icon_dir/controls.svg")); //mencari solusi agar direktori nya lebih local
-    tombol[1]=new QPushButton("About"); //akan diganti icon
-    tombol[2]=new QPushButton; //akan diganti icon
+    tombol[0]->setIcon(QIcon(":/icon_dir/controls.svg"));
+
+    tombol[1]=new QPushButton; //about
+    tombol[1]->setIcon(QIcon(":/icon_dir/info.svg"));
+
+    tombol[2]=new QPushButton; //schedule
     tombol[2]->setIcon(QIcon(":/icon_dir/schedule-button.svg"));
     for(int x=0;x<3;x++){
         tombol[x]->setFixedSize(50,50);

@@ -3,5 +3,6 @@
         <file>mosque-moon-and-star.svg</file>
         <file>controls.svg</file>
         <file>schedule-button.svg</file>
+        <file>info.svg</file>
     </qresource>
 </RCC>
