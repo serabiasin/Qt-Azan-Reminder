@@ -66,6 +66,7 @@ Widget::Widget(QWidget *parent)
 
     connect(tombol[0],SIGNAL(clicked()),this,SLOT(change_to_setting()));
     connect(tombol[1],SIGNAL(clicked()),this,SLOT(change_to_about()));
+    connect(tombol[2],SIGNAL(clicked()),this,SLOT(change_to_jadwal()));
 
 
     setLayout(buat_rapi);
@@ -83,17 +84,17 @@ Widget::~Widget()
 }
 
 void Widget::change_to_setting(){
-    core_view->setCurrentIndex(1);
+    core_view->setCurrentIndex(0);
 
 }
 
 
 void Widget::change_to_jadwal(){
-    core_view->setCurrentIndex(0);
+    core_view->setCurrentIndex(2);
 
 
 }
 void Widget::change_to_about(){
-    core_view->setCurrentIndex(0);
+    core_view->setCurrentIndex(1);
 
 }
