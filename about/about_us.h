@@ -3,8 +3,8 @@
 
 #include <QWidget>
 #include <QLabel>
-#include <QTextBrowser>
 #include <QGridLayout>
+#include <QtWebKitWidgets/QWebView>
 
 class about_us : public QWidget
 {
@@ -14,6 +14,7 @@ public:
     void set_about();
 private:
     QGridLayout *layout;
+
 };
 
 #endif // ABOUT_US_H

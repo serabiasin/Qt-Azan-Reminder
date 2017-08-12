@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core webkitwidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -47,4 +47,5 @@ DISTFILES += \
     azan_pre_build.pro.user \
 
 RESOURCES += \
-    icon/icon_pack.qrc
+    icon/icon_pack.qrc \
+    about/about_resource.qrc
