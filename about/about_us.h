@@ -3,16 +3,17 @@
 
 #include <QWidget>
 #include <QLabel>
-#include <QVBoxLayout>
+#include <QTextBrowser>
+#include <QGridLayout>
 
 class about_us : public QWidget
 {
     Q_OBJECT
 public:
     explicit about_us(QWidget *parent = nullptr);
-
+    void set_about();
 private:
-    QLabel *test;
+    QGridLayout *layout;
 };
 
 #endif // ABOUT_US_H
