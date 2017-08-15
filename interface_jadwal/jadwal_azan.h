@@ -3,8 +3,6 @@
 
 #include <QWidget>
 #include <QLabel>
-#include <QGroupBox>
-#include <QTableWidget>
 #include <QGridLayout>
 #include <QVBoxLayout>
 #include <QString>
@@ -16,14 +14,18 @@ public:
     explicit jadwal_azan(QWidget *parent = nullptr);
     void set_azan_time();
     void setting_up();
+    inline void set_variable();
+
 private:
     QLabel *shubuh_time;
     QLabel *dzuhur_time;
     QLabel *ashar_time;
     QLabel *maghrib_time;
     QLabel *isha_time;
-    QGroupBox *layout_rapi;
-    QVBoxLayout *view;
+    QLabel *time[5]; //this will start from subuh index=0
+    QVBoxLayout *view_sholat;
+    QVBoxLayout *view_waktu;
+    QGridLayout *rapi;
 
 };
 
