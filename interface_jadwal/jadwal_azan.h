@@ -5,16 +5,18 @@
 #include <QLabel>
 #include <QGridLayout>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QString>
+#include <QFrame>
 
 class jadwal_azan : public QWidget
 {
     Q_OBJECT
 public:
     explicit jadwal_azan(QWidget *parent = nullptr);
-    void set_azan_time();
+    void set_azan_time(); //this will do something from calculation_azan
     void setting_up();
-    inline void set_variable();
+    void set_variable();
 
 private:
     QLabel *shubuh_time;
@@ -25,7 +27,10 @@ private:
     QLabel *time[5]; //this will start from subuh index=0
     QVBoxLayout *view_sholat;
     QVBoxLayout *view_waktu;
+    QHBoxLayout *view_estimated;
     QGridLayout *rapi;
+    QLabel *estimated;
+    QLabel *time_estimated;
 
 };
 
