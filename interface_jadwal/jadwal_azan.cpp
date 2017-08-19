@@ -1,5 +1,5 @@
 #include "jadwal_azan.h"
-
+#include "QDebug"
 
 
 jadwal_azan::jadwal_azan(QWidget *parent) : QWidget(parent)
@@ -21,19 +21,28 @@ jadwal_azan::jadwal_azan(QWidget *parent) : QWidget(parent)
     maghrib_time=new QLabel("Maghrib");
     isha_time=new QLabel("Isya");
     estimated=new QLabel("Waktu Sholat Terdekat Tinggal : ");
-    time_estimated=new QLabel;
+    time_estimated=new QLabel("%d");
 
+    time_estimated->setStyleSheet( "color : Black" );
     shubuh_time->setStyleSheet( "color : Black" );
     dzuhur_time->setStyleSheet( "color : Black" );
     ashar_time->setStyleSheet( "color : Black" );
     maghrib_time->setStyleSheet( "color : Black" );
     isha_time->setStyleSheet( "color : Black" );
     estimated->setStyleSheet( "color : Black" );
+
+    for(int count=0;count<5;count++ ){
+        time[count]=new QLabel("%s");
+        time[count]->setStyleSheet("color : Black");
+    }
+
+
 }
 
 void jadwal_azan::setting_up(){
 
     view_estimated->addWidget(estimated);
+    view_estimated->addWidget(time_estimated);
 
     view_sholat->addWidget(shubuh_time);
     view_sholat->addWidget(dzuhur_time);
@@ -41,7 +50,14 @@ void jadwal_azan::setting_up(){
     view_sholat->addWidget(maghrib_time);
     view_sholat->addWidget(isha_time);
 
+    for(int count=0;count<5;count++ ){
+    view_waktu->addWidget(time[count]);
+    }
+
+
     rapi->addLayout(view_sholat,0,0);
+    rapi->addLayout(view_waktu,0,1);
     rapi->addLayout(view_estimated,1,0);
+
     setLayout(rapi);
 }
