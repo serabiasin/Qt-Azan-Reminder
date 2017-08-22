@@ -56,7 +56,7 @@ Widget::Widget(QWidget *parent)
     core_view->addWidget(sett_ui);
     core_view->addWidget(about_kita);
     core_view->addWidget(jadwal);
-    core_view->currentIndex();
+    core_view->setCurrentIndex(2);
 
 
 
