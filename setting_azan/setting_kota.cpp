@@ -3,6 +3,7 @@
 setting_kota::setting_kota(QWidget *parent) : QWidget(parent)
 {
 testing=new QLabel("Setting");
+testing->setStyleSheet("color : Black");
 QVBoxLayout *layout=new QVBoxLayout;
 layout->addWidget(testing);
 
