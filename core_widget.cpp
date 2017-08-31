@@ -6,7 +6,7 @@ Widget::Widget(QWidget *parent)
 {
     this->setWindowTitle("Azan Reminder");
     this->resize(390,600);
-    this->setStyleSheet("background-color:#00b300");
+    this->setStyleSheet("background-color:#4dff4d");
     layout_stacked=new QHBoxLayout;
     layout_tombol=new QVBoxLayout;
     buat_rapi=new QGridLayout;
@@ -40,7 +40,7 @@ Widget::Widget(QWidget *parent)
 
     sett_frame2->setLayout(layout_tombol);
     sett_frame2->setFrameShape(QFrame::NoFrame);
-    sett_frame2->setStyleSheet("background-color:#00b300");
+    sett_frame2->setStyleSheet("background-color:#4dff4d");
 
     /*Setting up layout stack view*/
     layout_stacked->addLayout(core_view);
