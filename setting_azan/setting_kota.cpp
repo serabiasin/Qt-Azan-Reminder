@@ -1,5 +1,8 @@
 #include "setting_azan/setting_kota.h"
 #include <QDebug>
+#include <QMessageBox>
+#include <QSqlError>
+#include <QSqlQuery>
 
 void setting_kota::setup_var(){
     nama_kota=new QComboBox;
@@ -32,7 +35,7 @@ setting_kota::setting_kota(QWidget *parent) : QWidget(parent)
 }
 
 void setting_kota::setup_database(){
-    QSqlDatabase db=QSqlDatabase::addDatabase("QSQLITE");
+    QSqlDatabase db=QSqlDatabase::addDatabase("QSQLITE","Connection");
     db.setDatabaseName("database_city.sqlite");
     if(!db.open()){
         QMessageBox::critical(this,"Mabok",tr("Error : ")+db.lastError().text());
@@ -40,10 +43,10 @@ void setting_kota::setup_database(){
     }
 
 
-
 }
 
 void setting_kota::setting_group(){
+    this->setup_database();
     layout=new QVBoxLayout;
     QVBoxLayout *layout_combo=new QVBoxLayout;
     QGridLayout *rapi=new QGridLayout;
