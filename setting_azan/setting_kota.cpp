@@ -3,6 +3,8 @@
 #include <QMessageBox>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QFile> //untuk mengecek eksistensi file database
+#include <QDir>
 
 void setting_kota::setup_var(){
     nama_kota=new QComboBox;
@@ -34,9 +36,28 @@ setting_kota::setting_kota(QWidget *parent) : QWidget(parent)
 
 }
 
+void setting_kota::insert_group(){
+    QString perintah="SELECT *FROM database_kota WHERE iso3='IDN'ORDER BY iso3 ASC";
+    QSqlQuery query;
+    query.exec(perintah);
+    int baris=0;
+    while (query.next()) {
+        QString city;
+        city=query.value(0).toString();
+        nama_kota->insertItem(baris++,city);
+        qDebug()<<query.value(0);
+    }
+}
+
 void setting_kota::setup_database(){
-    QSqlDatabase db=QSqlDatabase::addDatabase("QSQLITE","Connection");
-    db.setDatabaseName("database_city.sqlite");
+
+    /*Debugging purpose*/
+//    qDebug()<<QFile::exists("database_city.db");
+//    qDebug()<<QDir::currentPath();
+
+    QSqlDatabase db=QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("database_city.db");
+
     if(!db.open()){
         QMessageBox::critical(this,"Mabok",tr("Error : ")+db.lastError().text());
        return;
@@ -47,6 +68,8 @@ void setting_kota::setup_database(){
 
 void setting_kota::setting_group(){
     this->setup_database();
+    this->insert_group();
+
     layout=new QVBoxLayout;
     QVBoxLayout *layout_combo=new QVBoxLayout;
     QGridLayout *rapi=new QGridLayout;

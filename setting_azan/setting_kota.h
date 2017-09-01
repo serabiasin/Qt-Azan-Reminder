@@ -23,6 +23,7 @@ public:
     void setup_database();
     void setup_var();
     void setting_group();
+    void insert_group();
 
 private:
     //this for store the from database
