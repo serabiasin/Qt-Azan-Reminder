@@ -18,17 +18,21 @@ class setting_kota : public QWidget
 
 public:
     explicit setting_kota(QWidget *parent = nullptr);
-    static int get_latitude();
-    static int get_longitude();
+    static double get_latitude();
+    static double get_longitude();
+    static void set_latitude(double _latitude);
+    static void set_longitude(double _longitude);
+
     void setup_database();
     void setup_var();
     void setting_group();
     void insert_group();
-
+public slots:
+    void oke_clicked();
 private:
     //this for store the from database
-    static int latitude;
-    static int longitude;
+    static double latitude;
+    static double longitude;
 
     /*Supporting component*/
     QLabel *country;

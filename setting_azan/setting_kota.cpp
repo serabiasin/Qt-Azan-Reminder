@@ -3,10 +3,18 @@
 #include <QMessageBox>
 #include <QSqlError>
 #include <QSqlQuery>
-#include <QFile> //untuk mengecek eksistensi file database
-#include <QDir>
+#include <QFile>
+#include <QDir>//untuk mengecek eksistensi file database
 
+
+/*Static Member must be initialized first*/
+double setting_kota::latitude=0;
+double setting_kota::longitude=0;
+
+
+/*Initialization Class*/
 void setting_kota::setup_var(){
+
     nama_kota=new QComboBox;
     nama_negara=new QComboBox;
     kota=new QLabel("Kota  ");
@@ -14,7 +22,9 @@ void setting_kota::setup_var(){
     longitude_label=new QLabel("Longitude");
     latitude_label=new QLabel("Latitude");
     longitude_edit=new QLineEdit;
+    longitude_edit->setReadOnly(true);
     latitude_edit=new QLineEdit;
+    latitude_edit->setReadOnly(true);
     oke=new QPushButton("Oke");
 
 
@@ -27,6 +37,7 @@ void setting_kota::setup_var(){
     nama_kota->setStyleSheet("color : Black");
     nama_negara->setStyleSheet("color : Black");
     oke->setStyleSheet("color : Black");
+
 }
 
 setting_kota::setting_kota(QWidget *parent) : QWidget(parent)
@@ -37,16 +48,28 @@ setting_kota::setting_kota(QWidget *parent) : QWidget(parent)
 }
 
 void setting_kota::insert_group(){
-    QString perintah="SELECT *FROM database_kota WHERE iso3='IDN'ORDER BY iso3 ASC";
+
+    QString perintah="SELECT *FROM database_kota WHERE iso3='IDN' ORDER BY iso3 ASC";
     QSqlQuery query;
     query.exec(perintah);
     int baris=0;
+
     while (query.next()) {
         QString city;
         city=query.value(0).toString();
         nama_kota->insertItem(baris++,city);
-        qDebug()<<query.value(0);
+
+        if(baris==1){
+            QString country_box;
+            country_box=query.value(5).toString();
+            nama_negara->insertItem(0,country_box);
+        }
+
     }
+
+
+
+
 }
 
 void setting_kota::setup_database(){
@@ -67,6 +90,7 @@ void setting_kota::setup_database(){
 }
 
 void setting_kota::setting_group(){
+
     this->setup_database();
     this->insert_group();
 
@@ -88,6 +112,44 @@ void setting_kota::setting_group(){
     rapi->addLayout(layout_combo,0,1);
     rapi->addWidget(oke,1,1);
 
-
     setLayout(rapi);
+
+
+    QObject::connect(oke,SIGNAL(clicked()),this,SLOT(oke_clicked()));
 }
+
+  void setting_kota::set_longitude(double _longitude){
+    longitude=_longitude;
+
+}
+
+void setting_kota::set_latitude(double _latitude){
+    latitude=_latitude;
+}
+
+double setting_kota::get_latitude(){
+    return latitude;
+}
+
+double setting_kota::get_longitude(){
+    return longitude;
+}
+
+void setting_kota::oke_clicked(){
+    QSqlQuery query_fetch; //to fetch latitude and longitude
+
+   /*Open Query again in here*/
+    query_fetch.prepare("SELECT *FROM database_kota WHERE city= ? ");
+    query_fetch.addBindValue(nama_kota->currentText());
+    query_fetch.exec();
+    query_fetch.next();
+    /*insert into QLineEdit*/
+    longitude_edit->insert(query_fetch.value(2).toString());
+    latitude_edit->insert(query_fetch.value(3).toString());
+
+    /*assign the longitude and latitude to static procedure*/
+    set_latitude(query_fetch.value(3).toDouble());
+    set_longitude(query_fetch.value(2).toDouble());
+
+}
+
