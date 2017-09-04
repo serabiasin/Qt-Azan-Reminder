@@ -144,6 +144,8 @@ void setting_kota::oke_clicked(){
     query_fetch.exec();
     query_fetch.next();
     /*insert into QLineEdit*/
+    longitude_edit->clear();
+    latitude_edit->clear();
     longitude_edit->insert(query_fetch.value(2).toString());
     latitude_edit->insert(query_fetch.value(3).toString());
 
