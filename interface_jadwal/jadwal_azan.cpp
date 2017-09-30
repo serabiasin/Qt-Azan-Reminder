@@ -1,5 +1,6 @@
 #include "jadwal_azan.h"
 #include "QDebug"
+#include <iomanip>
 
 
 jadwal_azan::jadwal_azan(QWidget *parent) : QWidget(parent)
@@ -9,9 +10,10 @@ jadwal_azan::jadwal_azan(QWidget *parent) : QWidget(parent)
     rapi=new QGridLayout;
     view_estimated=new QHBoxLayout;
 
-//    this->set_azan_time(); soon
     this->set_variable();
     this->setting_up();
+    this->set_time_table();
+    connect(refresh,SIGNAL(clicked()),this,SLOT(set_time_table()));
 }
 
  void jadwal_azan::set_variable(){
@@ -22,7 +24,10 @@ jadwal_azan::jadwal_azan(QWidget *parent) : QWidget(parent)
     isha_time=new QLabel("Isya");
     estimated=new QLabel("Waktu Sholat Terdekat Tinggal : ");
     time_estimated=new QLabel("%d");
+    refresh=new QPushButton(); //cari gambar refresh
 
+    refresh->setIcon(QIcon(":/icon_dir/refresh-button.svg"));
+    refresh->setFixedSize(50,50);
     time_estimated->setStyleSheet( "color : Black" );
     shubuh_time->setStyleSheet( "color : Black" );
     dzuhur_time->setStyleSheet( "color : Black" );
@@ -30,11 +35,14 @@ jadwal_azan::jadwal_azan(QWidget *parent) : QWidget(parent)
     maghrib_time->setStyleSheet( "color : Black" );
     isha_time->setStyleSheet( "color : Black" );
     estimated->setStyleSheet( "color : Black" );
-
+    refresh->setStyleSheet( "color : Black" );
     for(int count=0;count<5;count++ ){
-        time[count]=new QLabel("%s");
-        time[count]->setStyleSheet("color : Black");
+
+        time_azan[count]=new QLabel;
+        time_azan[count]->setStyleSheet("color : Black");
+
     }
+
 
 
 }
@@ -44,6 +52,9 @@ void jadwal_azan::setting_up(){
     view_estimated->addWidget(estimated);
     view_estimated->addWidget(time_estimated);
 
+    QHBoxLayout *ref=new QHBoxLayout();
+    ref->addWidget(refresh);
+
     view_sholat->addWidget(shubuh_time);
     view_sholat->addWidget(dzuhur_time);
     view_sholat->addWidget(ashar_time);
@@ -51,13 +62,87 @@ void jadwal_azan::setting_up(){
     view_sholat->addWidget(isha_time);
 
     for(int count=0;count<5;count++ ){
-    view_waktu->addWidget(time[count]);
+    view_waktu->addWidget(time_azan[count]);
     }
 
 
     rapi->addLayout(view_sholat,0,0);
     rapi->addLayout(view_waktu,0,1);
     rapi->addLayout(view_estimated,1,0);
+    rapi->addLayout(ref,2,0);
 
     setLayout(rapi);
 }
+
+
+
+ void jadwal_azan::set_time_table(){
+        int temp1=0,temp2=0; //temp 1= jam,temp 2=menit
+        double temp_mentah;
+
+    for(int count=0;count<5;count++ ){
+
+        QString jam=QString::number(temp1);
+        QString menit=QString::number(temp2);
+
+        switch (count) {
+            /*subuh*/
+            case 0:
+                {
+                temp_mentah=azan_calc::get_subuh();
+                convert_to_hour(temp_mentah,temp1,temp2);
+                jam=QString::number(temp1);
+                menit=QString::number(temp2);
+                time_azan[0]->setText(jam +":"+ menit);
+
+                break;
+                }
+            /*Dzuhur*/
+            case 1:
+            temp_mentah=azan_calc::get_dzuhur();
+            convert_to_hour(temp_mentah,temp1,temp2);
+            jam=QString::number(temp1);
+            menit=QString::number(temp2);
+            time_azan[1]->setText(jam +":"+ menit);
+
+
+            break;
+
+            /*Ashar*/
+            case 2:
+            temp_mentah=azan_calc::get_ashar();
+            convert_to_hour(temp_mentah,temp1,temp2);
+            jam=QString::number(temp1);
+            menit=QString::number(temp2);
+            time_azan[2]->setText(jam +":"+ menit);
+
+                break;
+
+
+            /*Magrib*/
+            case 3:
+
+            temp_mentah=azan_calc::get_magrib();
+            convert_to_hour(temp_mentah,temp1,temp2);
+            jam=QString::number(temp1);
+            menit=QString::number(temp2);
+            time_azan[3]->setText(jam +":"+ menit);
+
+                break;
+
+            /*Isya*/
+            case 4:
+            temp_mentah=azan_calc::get_isya();
+            convert_to_hour(temp_mentah,temp1,temp2);
+            jam=QString::number(temp1);
+            menit=QString::number(temp2);
+            time_azan[4]->setText(jam +":"+ menit);
+
+
+                break;
+
+            }
+
+    }
+}
+

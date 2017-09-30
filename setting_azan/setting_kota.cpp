@@ -1,4 +1,6 @@
 #include "setting_azan/setting_kota.h"
+#include "interface_jadwal/jadwal_azan.h"
+
 #include <QDebug>
 #include <QMessageBox>
 #include <QSqlError>
@@ -135,6 +137,7 @@ double setting_kota::get_longitude(){
     return longitude;
 }
 
+
 void setting_kota::oke_clicked(){
     QSqlQuery query_fetch; //to fetch latitude and longitude
 
@@ -143,15 +146,28 @@ void setting_kota::oke_clicked(){
     query_fetch.addBindValue(nama_kota->currentText());
     query_fetch.exec();
     query_fetch.next();
+
     /*insert into QLineEdit*/
     longitude_edit->clear();
     latitude_edit->clear();
-    longitude_edit->insert(query_fetch.value(2).toString());
-    latitude_edit->insert(query_fetch.value(3).toString());
+
+    longitude_edit->insert(query_fetch.value(3).toString());
+    latitude_edit->insert(query_fetch.value(2).toString());
 
     /*assign the longitude and latitude to static procedure*/
-    set_latitude(query_fetch.value(3).toDouble());
-    set_longitude(query_fetch.value(2).toDouble());
+    set_latitude(query_fetch.value(2).toDouble());
+    set_longitude(query_fetch.value(3).toDouble());
+    this->calculate_time();
 
 }
 
+void setting_kota::calculate_time(){
+azan_calc object(setting_kota::get_longitude(),setting_kota::get_latitude(),7);
+/*
+qDebug()<<object.get_dzuhur(); //masuk
+qDebug()<<azan_calc::get_magrib(); //masuk
+qDebug()<<object.get_subuh(); //error bermasalah di acos
+*/
+
+
+}

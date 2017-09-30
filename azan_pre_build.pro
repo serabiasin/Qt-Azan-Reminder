@@ -29,13 +29,15 @@ SOURCES += \
     interface_jadwal/jadwal_azan.cpp \
     setting_azan/setting_kota.cpp \
     core_widget.cpp \
+    calculation_azan/azan_calculation.cpp
 
 HEADERS += \
     about/about_us.h \
     calculation_azan/azan_calculation.h \
     setting_azan/setting_kota.h \
     interface_jadwal/jadwal_azan.h \
-    core_widget.h
+    core_widget.h \
+    calculation_azan/azan_calculation.h
 
 SUBDIRS += \
     azan_pre_build.pro

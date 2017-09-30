@@ -18,6 +18,7 @@ Widget::Widget(QWidget *parent)
     sett_ui=new setting_kota(NULL);
     jadwal=new jadwal_azan(NULL);
     about_kita=new about_us(NULL);
+
     tombol[0]=new QPushButton; //Setting
     tombol[0]->setIcon(QIcon(":/icon_dir/controls.svg"));
 

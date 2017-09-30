@@ -10,7 +10,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 
-//#include "calculation_azan/azan_calculation.h"
+#include "calculation_azan/azan_calculation.h"
 
 class setting_kota : public QWidget
 {
@@ -27,6 +27,8 @@ public:
     void setup_var();
     void setting_group();
     void insert_group();
+    void calculate_time(); //this will initiate object from azan_calculation
+
 public slots:
     void oke_clicked();
 private:

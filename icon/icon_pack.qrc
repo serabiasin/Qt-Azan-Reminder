@@ -4,5 +4,6 @@
         <file>controls.svg</file>
         <file>schedule-button.svg</file>
         <file>info.svg</file>
+        <file>refresh-button.svg</file>
     </qresource>
 </RCC>

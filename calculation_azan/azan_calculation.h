@@ -7,9 +7,11 @@
 
 #include <math.h>
 #include <ctime>
-/* _NOTE_ : THIS FOR INDONESIA COUNTRY */
-#define FAJR_TWILIGHT_SEA 19.5 //Untuk daerah malaysia dan sekitarnya(Termasuk Indonesia)
-#define ISHA_TWILIGHT_SEA 17.5 //Untuk daerah malaysia dan sekitarnya(Termasuk Indonesia)
+#include "setting_azan/setting_kota.h"
+
+/* _NOTE_ : THIS FOR INDONESIA COUNTRY and arround it*/
+#define FAJR_TWILIGHT_SEA 17.5 //Untuk daerah malaysia dan sekitarnya(Termasuk Indonesia)
+#define ISHA_TWILIGHT_SEA 18 //Untuk daerah malaysia dan sekitarnya(Termasuk Indonesia)
 
 int get_curr_year();
 int get_curr_date();
@@ -22,12 +24,14 @@ class azan_calc {
 private:
 double latitude; // diambil menggunakan sqlite
 double longitude; //sama
-double subuh; //masih dalam bentuk koma
-double dzuhur;
-double ashar;
-double magrib;
-double isya;
-double sunRiseTime;
+static double subuh; //masih dalam bentuk koma
+static double dzuhur;
+static double ashar;
+static double magrib;
+static double isya;
+static double sunRiseTime;
+static unsigned int jam; //satu instruksi satu waktu, non array
+static unsigned int menit;
 
 public:
   azan_calc (double longitude_i,double latitude_i,int timezone);
@@ -36,11 +40,18 @@ public:
   double degToRad(double degree);
   double get_lat();
   double get_long();
-  double get_subuh();
-  double get_dzuhur();
-  double get_ashar();
-  double get_magrib();
-  double get_isya();
+
+  static double get_subuh();
+  static double get_dzuhur();
+  static double get_ashar();
+  static double get_magrib();
+  static double get_isya();
+  static void set_waktu(int _jam,int _minute);
+  double be_positive(double result);
+//  static int get_jam();
+//  static int get_menit();
+
+
 
 };
 
