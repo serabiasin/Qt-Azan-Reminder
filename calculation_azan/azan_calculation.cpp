@@ -9,10 +9,6 @@ double azan_calc::magrib=0;
 double azan_calc::isya=0;
 double azan_calc::sunRiseTime=0;
 
-unsigned int azan_calc::jam=0;
-unsigned int azan_calc::menit=0;
-
-
 int get_curr_year(){
 
     time_t dat_time=time(NULL);
@@ -111,7 +107,6 @@ void convert_to_hour(double result,int &hours,int &minutes){
 
     hours = floor(max_24(result));
     minutes = ((result - hours) * 60);
-    azan_calc::set_waktu(hours,minutes);
 }
 
 int max_24(double value){
@@ -178,28 +173,3 @@ double azan_calc::get_magrib(){
 double azan_calc::get_isya(){
     return isya;
 }
-
-
-void azan_calc::set_waktu(int _jam, int _minute){
-
-    azan_calc::jam=_jam;
-    azan_calc::menit=_minute;
-
-}
-
-
-double azan_calc::be_positive(double result){
-    if(result<0){
-        return result*(-1);
-    }
-    else
-        return result;
-}
-
-//int azan_calc::get_jam(){
-//    return jam;
-//}
-
-//int azan_calc::get_menit(){
-//    return menit;
-//}

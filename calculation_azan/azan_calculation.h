@@ -30,8 +30,6 @@ static double ashar;
 static double magrib;
 static double isya;
 static double sunRiseTime;
-static unsigned int jam; //satu instruksi satu waktu, non array
-static unsigned int menit;
 
 public:
   azan_calc (double longitude_i,double latitude_i,int timezone);
@@ -46,10 +44,6 @@ public:
   static double get_ashar();
   static double get_magrib();
   static double get_isya();
-  static void set_waktu(int _jam,int _minute);
-  double be_positive(double result);
-//  static int get_jam();
-//  static int get_menit();
 
 
 
