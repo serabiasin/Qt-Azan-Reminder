@@ -86,7 +86,13 @@ void jadwal_azan::setting_up(){
                 convert_to_hour(temp_mentah,temp1,temp2);
                 jam=QString::number(temp1);
                 menit=QString::number(temp2);
-                time_azan[0]->setText(jam +":"+ menit);
+                /*Add logic here to make 9 to 09*/
+                if(temp2<10){
+                    time_azan[count]->setText("0"+jam +":0"+menit);
+                }
+                else
+                    { time_azan[count]->setText(jam +":"+menit);
+                }
 
                 break;
                 }
@@ -96,7 +102,13 @@ void jadwal_azan::setting_up(){
             convert_to_hour(temp_mentah,temp1,temp2);
             jam=QString::number(temp1);
             menit=QString::number(temp2);
-            time_azan[1]->setText(jam +":"+ menit);
+            if(temp2<10){
+                  time_azan[count]->setText("0"+jam +":0"+menit);
+            }
+            else
+                { time_azan[count]->setText(jam +":"+menit);
+            }
+
 
 
             break;
@@ -107,7 +119,11 @@ void jadwal_azan::setting_up(){
             convert_to_hour(temp_mentah,temp1,temp2);
             jam=QString::number(temp1);
             menit=QString::number(temp2);
-            time_azan[2]->setText(jam +":"+ menit);
+            if(temp2<10){
+                  time_azan[count]->setText("0"+jam +":0"+menit);}
+            else
+                { time_azan[count]->setText(jam +":"+menit);
+            }
 
                 break;
             }
@@ -119,7 +135,12 @@ void jadwal_azan::setting_up(){
             convert_to_hour(temp_mentah,temp1,temp2);
             jam=QString::number(temp1);
             menit=QString::number(temp2);
-            time_azan[3]->setText(jam +":"+ menit);
+            if(temp2<10){
+                time_azan[count]->setText("0"+jam +":0"+menit);
+            }
+            else
+                { time_azan[count]->setText(jam +":"+menit);
+            }
 
                 break;
             }
@@ -130,7 +151,13 @@ void jadwal_azan::setting_up(){
             convert_to_hour(temp_mentah,temp1,temp2);
             jam=QString::number(temp1);
             menit=QString::number(temp2);
-            time_azan[4]->setText(jam +":"+ menit);
+            if(temp2<10){
+                  time_azan[count]->setText("0"+jam +":0"+menit);
+            }
+            else
+                { time_azan[count]->setText(jam +":"+menit);
+            }
+
             break;
         }
 
