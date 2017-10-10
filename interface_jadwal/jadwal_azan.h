@@ -16,14 +16,14 @@ class jadwal_azan : public QWidget
     Q_OBJECT
 public:
     explicit jadwal_azan(QWidget *parent = nullptr);
+    friend class setting_kota;
     void setting_up();
     void set_variable();
+    void set_time_table(); //untuk dipakai di class setting kota
     /*kita mengambil data dari static variable azan_calculation
      * dari variable jam dan waktu lalu di kombinasikan dengan string*/
 
 
-private slots:
-    void set_time_table(); //untuk dipakai di class setting kota
 private:
     QLabel *shubuh_time;
     QLabel *dzuhur_time;
@@ -37,7 +37,6 @@ private:
     QGridLayout *rapi;
     QLabel *estimated;
     QLabel *time_estimated;
-    QPushButton *refresh;
 };
 
 

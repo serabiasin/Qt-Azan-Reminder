@@ -15,8 +15,9 @@ Widget::Widget(QWidget *parent)
     tombol_group=new QBoxLayout(QBoxLayout::TopToBottom,NULL);
 
     core_view=new QStackedLayout;
-    sett_ui=new setting_kota(NULL);
     jadwal=new jadwal_azan(NULL);
+//    qDebug()<<this->jadwal; make sure pointer is not dangling
+    sett_ui=new setting_kota(jadwal,NULL);
     about_kita=new about_us(NULL);
 
     tombol[0]=new QPushButton; //Setting
@@ -78,6 +79,7 @@ Widget::~Widget()
 
     delete core_view;
     delete sett_ui;
+    delete jadwal;
     delete about_kita;
     delete layout_stacked;
     delete layout_tombol;
@@ -99,3 +101,5 @@ void Widget::change_to_about(){
     core_view->setCurrentIndex(1);
 
 }
+
+
