@@ -97,7 +97,7 @@ azan_calc::azan_calc(double longitude_i,double latitude_i,int timezone){
 
         // 0) Fajr Time
         double Fajr_Arc = radToDeg(acos((sin(degToRad(FAJR_TWILIGHT_SEA)) - sin(degToRad(Dec)) * sin(degToRad(get_lat()))) / (cos(degToRad(Dec)) * cos(degToRad(get_lat())))));
-        subuh = (get_dzuhur() - (Fajr_Arc / 15))-2;
+        subuh = (get_dzuhur() - (Fajr_Arc / 15))-2.5;
 
         return;
 
