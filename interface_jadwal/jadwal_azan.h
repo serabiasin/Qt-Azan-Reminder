@@ -8,6 +8,8 @@
 #include <QHBoxLayout>
 #include <QString>
 #include <QFrame>
+#include <QTimer>
+#include <QTime>
 
 #include "calculation_azan/azan_calculation.h"
 
@@ -22,7 +24,9 @@ public:
     void set_time_table(); //untuk dipakai di class setting kota
     /*kita mengambil data dari static variable azan_calculation
      * dari variable jam dan waktu lalu di kombinasikan dengan string*/
-
+private slots:
+    /*Testing performance, output waktu saat ini secara real time*/
+    void update_time();
 
 private:
     QLabel *shubuh_time;
@@ -37,6 +41,7 @@ private:
     QGridLayout *rapi;
     QLabel *estimated;
     QLabel *time_estimated;
+    QTimer *timer; //untuk melakukan update secara berulang pada waktu yang tersisa
 };
 
 

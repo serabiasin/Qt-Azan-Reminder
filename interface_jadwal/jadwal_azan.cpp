@@ -1,6 +1,5 @@
 #include "jadwal_azan.h"
 #include "QDebug"
-#include <iomanip>
 
 
 jadwal_azan::jadwal_azan(QWidget *parent) : QWidget(parent)
@@ -18,13 +17,16 @@ jadwal_azan::jadwal_azan(QWidget *parent) : QWidget(parent)
 }
 
  void jadwal_azan::set_variable(){
+
     shubuh_time=new QLabel("Subuh");
     dzuhur_time=new QLabel("Dzuhur");
     ashar_time=new QLabel("Ashar");
     maghrib_time=new QLabel("Maghrib");
     isha_time=new QLabel("Isya");
     estimated=new QLabel("Waktu Sholat Terdekat Tinggal : ");
-    time_estimated=new QLabel("%d");
+    /*Will combine with QTime*/
+    time_estimated=new QLabel;
+    timer=new QTimer(this);
 
     time_estimated->setStyleSheet( "color : Black" );
     shubuh_time->setStyleSheet( "color : Black" );
@@ -40,7 +42,17 @@ jadwal_azan::jadwal_azan(QWidget *parent) : QWidget(parent)
 
     }
 
+    //testing function
+//    QTime object(QTime::currentTime()); //setting up local time
+    connect(timer,SIGNAL(timeout()),this,SLOT(update_time()));
+    timer->start(30000);
 
+    /* Coming soon : real time count down sholat
+
+    qDebug()<<object.minute(); //get current minute
+    qDebug()<<object.hour(); //get current hour
+
+*/
 
 }
 
@@ -73,41 +85,30 @@ void jadwal_azan::setting_up(){
         int temp1=0,temp2=0; //temp 1= jam,temp 2=menit
         double temp_mentah;
 
+
+
     for(int count=0;count<5;count++ ){
 
-        QString jam=QString::number(temp1);
+      /*  QString jam=QString::number(temp1);
         QString menit=QString::number(temp2);
-
+*/
         switch (count) {
             /*subuh*/
             case 0:
                 {
+
                 temp_mentah=azan_calc::get_subuh();
                 convert_to_hour(temp_mentah,temp1,temp2);
-                jam=QString::number(temp1);
-                menit=QString::number(temp2);
-                /*Add logic here to make 9 to 09*/
-                if(temp2<10){
-                    time_azan[count]->setText("0"+jam +":0"+menit);
-                }
-                else
-                    { time_azan[count]->setText(jam +":"+menit);
-                }
-
+                QTime converter(temp1,temp2);
+                time_azan[count]->setText(converter.toString("hh:mm"));
                 break;
                 }
             /*Dzuhur*/
         case 1:{
             temp_mentah=azan_calc::get_dzuhur();
             convert_to_hour(temp_mentah,temp1,temp2);
-            jam=QString::number(temp1);
-            menit=QString::number(temp2);
-            if(temp2<10){
-                  time_azan[count]->setText("0"+jam +":0"+menit);
-            }
-            else
-                { time_azan[count]->setText(jam +":"+menit);
-            }
+            QTime converter(temp1,temp2);
+            time_azan[count]->setText(converter.toString("hh:mm"));
 
 
 
@@ -117,14 +118,8 @@ void jadwal_azan::setting_up(){
         case 2:{
             temp_mentah=azan_calc::get_ashar();
             convert_to_hour(temp_mentah,temp1,temp2);
-            jam=QString::number(temp1);
-            menit=QString::number(temp2);
-            if(temp2<10){
-                  time_azan[count]->setText("0"+jam +":0"+menit);}
-            else
-                { time_azan[count]->setText(jam +":"+menit);
-            }
-
+            QTime converter(temp1,temp2);
+            time_azan[count]->setText(converter.toString("hh:mm"));
                 break;
             }
 
@@ -133,15 +128,8 @@ void jadwal_azan::setting_up(){
             {
             temp_mentah=azan_calc::get_magrib();
             convert_to_hour(temp_mentah,temp1,temp2);
-            jam=QString::number(temp1);
-            menit=QString::number(temp2);
-            if(temp2<10){
-                time_azan[count]->setText("0"+jam +":0"+menit);
-            }
-            else
-                { time_azan[count]->setText(jam +":"+menit);
-            }
-
+            QTime converter(temp1,temp2);
+            time_azan[count]->setText(converter.toString("hh:mm"));
                 break;
             }
             /*Isya*/
@@ -149,14 +137,8 @@ void jadwal_azan::setting_up(){
         {
             temp_mentah=azan_calc::get_isya();
             convert_to_hour(temp_mentah,temp1,temp2);
-            jam=QString::number(temp1);
-            menit=QString::number(temp2);
-            if(temp2<10){
-                  time_azan[count]->setText("0"+jam +":0"+menit);
-            }
-            else
-                { time_azan[count]->setText(jam +":"+menit);
-            }
+            QTime converter(temp1,temp2);
+            time_azan[count]->setText(converter.toString("hh:mm"));
 
             break;
         }
@@ -167,3 +149,8 @@ void jadwal_azan::setting_up(){
 }
 
 
+ void jadwal_azan::update_time(){
+    QTime tumbal(tumbal.currentTime());
+    time_estimated->setText(tumbal.toString("hh:mm"));
+
+ }
